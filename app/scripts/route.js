@@ -11,6 +11,10 @@ angular
     .config(function ($routeProvider) {
         $routeProvider
             .when('/',{
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl'
+            })
+            .when('/activity_list',{
                 templateUrl: 'views/activity_list.html',
                 controller: 'ActivityListCtrl'
             })
@@ -24,7 +28,7 @@ angular
 
             })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: '/activity_list'
             });
 
 

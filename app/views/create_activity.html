@@ -1,17 +1,21 @@
 
-<body>
-<div id='creat_activity_page'>
-    <header class="header">
-        创建活动
-        <button class="button button-primary header-left" ng-disable="!activity_name"
-                ng-click='back_to_activity_list()'>Back</button>
-    </header>
-    <div class="wrapper">
-        <h4>活动名称：</h4>
-        <p><input type="text" name="activity_name" /></p>
-        <div><p style="red">{{tip}}</p></div>
-        <button class="button button-default button-lg button-block" ng-show="activity_name" id="confirm"
-                ng-click="confirm_create(activity_name)">创建</button>
+
+<header>
+    创建活动
+
+    <div class="header-left">
+        <a href="#/activity_list" class="side-slide-trigger btn-style btn-4" ng-show="localStorage.length">返回</a>
+    </div>
+</header>
+
+<div id="wrapper" class="wrapper scrollable">
+    <div class="wrapper-inner">
+        <div>
+        <input type="text" class="input-full" ng-model="activity_name" />
+        <p><font color="red">{{tip}}</font></p>
+        </div>
+         <button class="btn-style btn-2" ng-disabled="!activity_name" ng-click="confirm_create()">创建</button>
+
     </div>
 
-</body>
+</div>

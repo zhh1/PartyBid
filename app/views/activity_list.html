@@ -1,9 +1,12 @@
 
 <header class="header">
     活动列表
-    <button class="button button-primary header-right" ng-click='create_activity()'>创建活动</button>
+    <button class="side-slide-trigger btn-style btn-4" ng-click='create_activity()'>创建活动</button>
 </header>
 
-<div class="p-left">
-    <p class="font-1">{{activity_name}}</p>
+<div class="wrapper scrollable">
+
+    <ul>
+        <li ng-repeat='activities_name in activities'>{{activities_name}}</li>
+    </ul>
 </div>
