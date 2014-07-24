@@ -4,7 +4,7 @@
     创建活动
 
     <div class="header-left">
-        <a href="#/activity_list" class="side-slide-trigger btn-style btn-4" ng-show="localStorage.length">返回</a>
+        <a href="#/activity_list" class="side-slide-trigger btn-style btn-4" ng-show="xianyin">返回</a>
     </div>
 </header>
 
@@ -12,7 +12,7 @@
     <div class="wrapper-inner">
         <div>
         <input type="text" class="input-full" ng-model="activity_name" />
-        <p><font color="red">{{tip}}</font></p>
+        <p style="color:red">{{tip}}</font></p>
         </div>
          <button class="btn-style btn-2" ng-disabled="!activity_name" ng-click="confirm_create()">创建</button>
 

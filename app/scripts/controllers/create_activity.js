@@ -3,15 +3,17 @@
  */
 angular.module('PartyBidApp')
     .controller('CreateActivityCtrl', function ($scope, $location) {
-
+        $scope.xianyin=localStorage.length;
 
 
         $scope.confirm_create=function(){
             var present_name=$scope.activity_name;
+
             if(localStorage.length!=0)
             {
                 var i=0
-                 var activity=JSON.parse(localStorage['create_activity_name']);
+                 var activity=JSON.parse(localStorage.getItem("create_activity_name"));
+
                 for(var n=0;n<activity.length;n++) {
                     if (activity[n] == present_name) {
                         $scope.tip = "*活动名称重复";
@@ -22,7 +24,7 @@ angular.module('PartyBidApp')
             if(i==0){
 
                 activity.push(present_name);
-                localStorage['create_activity_name']=JSON.stringify(activity);
+                localStorage.setItem("create_activity_name",JSON.stringify(activity));
                 $location.path('/sign_up');
             }
 
