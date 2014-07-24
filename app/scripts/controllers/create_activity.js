@@ -11,7 +11,7 @@ angular.module('PartyBidApp')
 
             if(localStorage.length!=0)
             {
-                var i=0
+                var i=0;
                  var activity=JSON.parse(localStorage.getItem("create_activity_name"));
 
                 for(var n=0;n<activity.length;n++) {
@@ -23,7 +23,7 @@ angular.module('PartyBidApp')
                 }
             if(i==0){
 
-                activity.push(present_name);
+                activity.unshift(present_name);
                 localStorage.setItem("create_activity_name",JSON.stringify(activity));
                 $location.path('/sign_up');
             }
@@ -31,8 +31,8 @@ angular.module('PartyBidApp')
                 }
 
             else{
-                var name=[];
-                name.push(present_name);
+                var name=Array();
+                name.unshift(present_name);
                 localStorage['create_activity_name']=JSON.stringify(name);
                 $location.path('/sign_up');
             }
