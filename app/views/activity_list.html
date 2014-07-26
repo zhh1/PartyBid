@@ -1,12 +1,14 @@
 
 <header class="header">
     活动列表
+    <div class="header-right">
     <button class="side-slide-trigger btn-style btn-4" ng-click='create_activity()'>创建活动</button>
+    </div>
+
 </header>
 
-<div class="wrapper scrollable">
-
-    <ul>
+<div id="wrapper" class="wrapper">
+    <ul class="list-style-2">
         <li ng-repeat='activities_name in activities' class="btn-style btn-3">{{activities_name}}
             </li>
     </ul>
