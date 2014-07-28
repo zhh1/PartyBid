@@ -3,7 +3,7 @@
  */
 angular.module('PartyBidApp')
     .controller('CreateActivityCtrl', function ($scope, $location) {
-        $scope.xianyin=localStorage.length;
+        $scope.is_there_any_activity=localStorage.length;
 
 
         $scope.confirm_create=function(){
@@ -12,7 +12,7 @@ angular.module('PartyBidApp')
             if(localStorage.length!=0)
             {
                 var i=0;
-                 var activity=JSON.parse(localStorage.getItem("create_activity_name"));
+                var activity=JSON.parse(localStorage.getItem("activity_names"));
 
                 for(var n=0;n<activity.length;n++) {
                     if (activity[n] == present_name) {
@@ -21,19 +21,19 @@ angular.module('PartyBidApp')
                         break;
                     }
                 }
-            if(i==0){
+                if(i==0){
 
-                activity.unshift(present_name);
-                localStorage.setItem("create_activity_name",JSON.stringify(activity));
-                $location.path('/sign_up');
-            }
-
+                   activity.unshift(present_name);
+                   localStorage.setItem("activity_names",JSON.stringify(activity));
+                   $location.path('/sign_up');
                 }
+
+            }
 
             else{
                 var name=Array();
                 name.unshift(present_name);
-                localStorage['create_activity_name']=JSON.stringify(name);
+                localStorage['activity_names']=JSON.stringify(name);
                 $location.path('/sign_up');
             }
 

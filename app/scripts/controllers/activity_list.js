@@ -4,7 +4,7 @@
 angular.module('PartyBidApp')
     .controller('ActivityListCtrl', function ($scope, $location) {
 
-        $scope.activities= JSON.parse(localStorage['create_activity_name']);
+        $scope.activities= JSON.parse(localStorage['activity_names']);
 
         $scope.create_activity= function () {
                 $location.path('/create_activity');
