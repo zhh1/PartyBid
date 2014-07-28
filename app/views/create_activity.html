@@ -1,6 +1,4 @@
-
-
-<header>
+<header xmlns="http://www.w3.org/1999/html">
     创建活动
 
     <div class="header-left">
@@ -12,7 +10,7 @@
     <div class="wrapper-inner">
         <div>
         <input type="text" class="input-full" ng-model="activity_name" />
-        <p style="color:red">{{tip}}</font></p>
+        <p style="color: red">{{tip}}</style></p>
         </div>
          <button class="btn btn-2" ng-disabled="!activity_name" ng-click="confirm_create()">创建</button>
 
