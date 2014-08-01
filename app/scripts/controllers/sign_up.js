@@ -6,7 +6,7 @@ angular.module('PartyBidApp')
         $scope.back_to_activity_list=function(){$location.path('/activity_list')}
 
         var activity=JSON.parse(localStorage['current_activity']);
-       start_or_end_judgment(activity);    //初始时判断按键是什么状态
+        start_or_end_judgment(activity);    //初始时判断按键是什么状态
 
         $scope.start_sign_up=function(){    //点击按键之后按键状态的改变
             if(activity.state==0||activity.state==2){
@@ -28,9 +28,7 @@ angular.module('PartyBidApp')
                if(parseInt(activities[i].state%2)!=0){
                    n++;
                }
-
             }
-//            console.log(n);
             if(n==0){
                 $scope.start_or_end="开始";
             }

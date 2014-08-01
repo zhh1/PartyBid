@@ -8,7 +8,7 @@ function judgment(array,name) {
             return i;
         }
         
-function activity(name){
+function activity(name){      //定义一个对象，包括name和state两个属性
             this.name=name;
             this.state=0;
         }
@@ -19,7 +19,7 @@ function storage(activity_array,object){                   //存储活动名称
             localStorage['activity']=JSON.stringify(activity_array);
         }
 
-function fresh(activity){
+function fresh(activity){            //将被改变的状态值存入localStorage['activity']和localStorage['current_activity']里面
     var activities=JSON.parse(localStorage['activity']);
     for(var i=0;i<activities.length;i++){
         if(activities[i].name==activity.name){
