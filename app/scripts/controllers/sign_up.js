@@ -8,8 +8,12 @@ angular.module('PartyBidApp')
         $scope.start_or_end="开始";
 
         $scope.start_sign_up=function(){
+
             if($scope.start_or_end=="开始"){
                 $scope.start_or_end="结束";
+
+
+
             }
             else{
                 $scope.start_or_end="开始";
@@ -17,9 +21,6 @@ angular.module('PartyBidApp')
 
 
         }
-
-
-
 
 
     });

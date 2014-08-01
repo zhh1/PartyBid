@@ -9,7 +9,9 @@
 
 <div id="wrapper" class="wrapper">
     <ul class="list-style-2">
-        <li ng-repeat='activities_name in activities' class="btn-style btn-3">{{activities_name}}
-            </li>
+        <li ng-repeat='activities_name in activities' class="btn-style btn-3" ng-click="goto_sign_up()">
+            {{activities_name}}
+
+        </li>
     </ul>
 </div>
