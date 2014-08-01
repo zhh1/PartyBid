@@ -4,14 +4,18 @@
 angular.module('PartyBidApp')
     .controller('ActivityListCtrl', function ($scope, $location) {
 
-        $scope.activities= JSON.parse(localStorage['activity']);
+        $scope.activities=JSON.parse(localStorage['activity']);
 
         $scope.create_activity= function () {
                 $location.path('/create_activity');
          }
 
-        $scope.goto_sign_up= function () {
+        $scope.goto_sign_up= function (activity) {
+
             $location.path('/sign_up');
+            localStorage['current_activity']=JSON.stringify(activity);
         }
+
+
 
     });
