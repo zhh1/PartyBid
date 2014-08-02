@@ -575,12 +575,16 @@ footer {
 	text-align:left;
 }
 
+.start {
+    background: #ffff00 !important;
+}
+
 .list-style-2 li {
-	padding:0 10px;
+	padding:0 20px;
 	border-bottom:1px solid #ccc;
 	border-top:1px solid #fff;
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
-	font-size:14px;
+	font-size:20px;
 	position: relative;
 }
 

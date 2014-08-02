@@ -11,11 +11,15 @@ angular.module('PartyBidApp')
          }
 
         $scope.goto_sign_up= function (activity) {
-
             $location.path('/sign_up');
             localStorage['current_activity']=JSON.stringify(activity);
         }
 
+        $scope.activity_yellow = function (activity) {
+            if (activity.state == 1) {
+                    return "start";
+                }
+            }
 
 
     });
