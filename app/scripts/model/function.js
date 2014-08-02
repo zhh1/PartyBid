@@ -33,3 +33,9 @@ function fresh(activity){            //将被改变的状态值存入localStorag
 }
 
 
+function Message(activity,name,phone){     //定义一个Message对象，包含activity,name,phone三个属性
+    this.activity=activity.name;
+    this.name=name;
+    this.phone=phone;
+}
+

@@ -11,10 +11,9 @@ angular.module('PartyBidApp')
 
             var present_name=$scope.activity_name;
 
-            if(localStorage.length!=0)                //判断localStorage里有没有存储活动
+            if(localStorage.activity!=null)                //判断localStorage里有没有存储活动
             {
                 var activities=JSON.parse(localStorage.getItem("activity"));
-                console.log(activities);
                 i=judgment(activities,present_name);
 
                 if(i==0){                             //i==0说明localStorage里有活动，但与新创建的活动名称不重复

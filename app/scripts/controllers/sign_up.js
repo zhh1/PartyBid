@@ -13,7 +13,6 @@ angular.module('PartyBidApp')
                 $scope.start_or_end="结束";
                 activity.state=1;
                 fresh(activity);
-
             }
             else{
                 if (confirm("你确定结束报名吗？"))
@@ -27,7 +26,6 @@ angular.module('PartyBidApp')
                 {
                     alert("取消结束报名");
                 }
-
             }
         }
 
@@ -50,6 +48,8 @@ angular.module('PartyBidApp')
                 $scope.is_there_any_activity_signing_up=1;  //有一个活动正在报名时，其他活动的开始按键不能使用
             }
         }
+
+
 
 
     });

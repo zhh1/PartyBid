@@ -20,6 +20,4 @@ angular.module('PartyBidApp')
                     return "start";
                 }
             }
-
-
     });

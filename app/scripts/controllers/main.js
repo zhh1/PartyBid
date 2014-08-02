@@ -3,7 +3,7 @@
  */
 angular.module('PartyBidApp')
     .controller('MainCtrl', function ($scope, $location) {
-        if (localStorage.length != 0) {
+        if (localStorage.activity!=null) {
 
             $location.path('/activity_list');
 
