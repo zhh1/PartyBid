@@ -12,6 +12,21 @@ var native_accessor = {
         }
     },
     process_received_message: function (json_message) {
+        var message=json_message.messages[0].message.replace(/\s/g,"");
+        var current_activity=JSON.parse(localStorage['current_activity']);
+        if(message.search(/bm|ｂｍ/i) == 0){
+            if(current_activity.state==0){
+                native_accessor.send_sms(json_message.messages[0].phone,"活动尚未开始，请稍后");
+            }
+            else if(current_activity.state==1){
+
+                native_accessor.send_sms(json_message.messages[0].phone,"恭喜！报名成功");
+
+            }
+            else{
+                native_accessor.send_sms(json_message.messages[0].phone,"Sorry,报名活动已结束");
+            }
+        }
 
 }
 };
@@ -19,7 +34,7 @@ var native_accessor = {
 
 
 function notify_message_received(message_json) {
-    //console.log(JSON.stringify(message_json));
+    //console.log(JSON.stringify(message_json));(
     //JSON.stringify(message_json);
     //alert(JSON.stringify(message_json.messages));
     native_accessor.receive_message(message_json);

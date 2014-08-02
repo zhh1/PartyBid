@@ -13,11 +13,21 @@ angular.module('PartyBidApp')
                 $scope.start_or_end="结束";
                 activity.state=1;
                 fresh(activity);
+
             }
             else{
-                $scope.start_or_end="开始";
-                activity.state=2;
-                fresh(activity);
+                if (confirm("你确定结束报名吗？"))
+                {
+                    alert("确定结束报名");
+                    $scope.start_or_end="开始";
+                    activity.state=2;
+                    fresh(activity);
+                }
+                else
+                {
+                    alert("取消结束报名");
+                }
+
             }
         }
 
