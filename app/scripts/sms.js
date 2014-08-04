@@ -31,6 +31,10 @@ var native_accessor = {
                     var message=new Message(current_activity,person_name,person_phone);
                     messages.unshift(message);
                     localStorage['message']=JSON.stringify(messages);
+                    var scope = angular.element('#register').scope();
+                    scope.$apply(function () {
+                        scope.refresh_sign_up_info();
+                    });
                 }
                 else if(i==0){
                     native_accessor.send_sms(json_message.messages[0].phone,"您已经报名过了");
@@ -41,6 +45,10 @@ var native_accessor = {
                     var message=new Message(current_activity,person_name,person_phone);
                     messages.unshift(message);
                     localStorage['message']=JSON.stringify(messages);
+                    var scope = angular.element('#register').scope();
+                    scope.$apply(function () {
+                        scope.refresh_sign_up_info();
+                    });
                 }
 
 

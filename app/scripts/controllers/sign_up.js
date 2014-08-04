@@ -30,9 +30,12 @@ angular.module('PartyBidApp')
 
         }
 
-        $scope.messages=JSON.parse(localStorage.getItem('message') || '[]');
+        $scope.refresh_sign_up_info = function () {
+            $scope.messages=JSON.parse(localStorage.getItem('message') || '[]');
+            $scope.sign_up_quantity=$scope.messages.length;
+        };
 
-        $scope.sign_up_quantity=$scope.messages.length;
+       $scope.refresh_sign_up_info();
 
         function start_or_end_judgment(activity){       //判断按键的初始状态
             var activities=JSON.parse(localStorage.getItem("activity"));
