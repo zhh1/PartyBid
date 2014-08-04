@@ -5,16 +5,11 @@ angular.module('PartyBidApp')
     .controller('SignUpCtrl', function ($scope, $location) {
         $scope.back_to_activity_list=function(){$location.path('/activity_list')}
 
-        var activity=JSON.parse(localStorage['current_activity']);
+        var activity=JSON.parse(localStorage.getItem('current_activity') || '[]');
         start_or_end_judgment(activity);    //初始时判断按键是什么状态
 
         $scope.start_sign_up=function(){    //点击按键之后按键状态的改变
-            if(activity.state==0||activity.state==2){
-                $scope.start_or_end="结束";
-                activity.state=1;
-                fresh(activity);
-            }
-            else{
+            if(activity.state==1){
                 if (confirm("你确定结束报名吗？"))
                 {
                     alert("确定结束报名");
@@ -27,9 +22,15 @@ angular.module('PartyBidApp')
                     alert("取消结束报名");
                 }
             }
+            else{
+                $scope.start_or_end="结束";
+                activity.state=1;
+                fresh(activity);
+            }
+
         }
 
-        $scope.messages=JSON.parse(localStorage['message']);
+        $scope.messages=JSON.parse(localStorage.getItem('message') || '[]');
 
         $scope.sign_up_quantity=$scope.messages.length;
 

@@ -26,7 +26,7 @@ function fresh(activity){            //将被改变的状态值存入localStorag
             activities[i].state=activity.state;
             localStorage['activity']=JSON.stringify(activities);
         }
-    var current_activity=JSON.parse(localStorage['current_activity']);
+    var current_activity=JSON.parse(localStorage.getItem('current_activity') || '[]');
         current_activity.state=activity.state;
         localStorage['current_activity']=JSON.stringify(current_activity);
     }
