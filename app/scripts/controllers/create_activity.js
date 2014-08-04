@@ -33,7 +33,7 @@ angular.module('PartyBidApp')
                 storage(activity_array,activityname);
                 $location.path('/sign_up');
                 localStorage['current_activity']=JSON.stringify(activityname);
-                localStorage['singing_up']=JSON.stringify(activityname);
+                localStorage['signing_up']=JSON.stringify(activityname);
             }
 
 
