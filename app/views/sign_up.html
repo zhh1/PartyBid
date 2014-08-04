@@ -1,6 +1,6 @@
 
 
-<div>
+
 <header class="header">
     报名（{{sign_up_quantity}}人）
 
@@ -10,11 +10,17 @@
     <div class="header-right">
     <button class="btn btn-4" ng-click="start_sign_up()"  ng-disabled="is_there_any_activity_signing_up">
         {{start_or_end}}</button>
-
     </div>
-</header>
-</div>
 
+</header>
+
+<div id="wrapper" class="wrapper">
+    <ul class="list-style-2">
+    <li ng-repeat='message in messages'>
+        {{message.name}}{{message.phone}}
+    </li>
+    </ul>
+</div>
 
 <footer>
     <ul class="footer-nav footer-nav-2tabs">
