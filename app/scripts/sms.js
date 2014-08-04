@@ -16,24 +16,25 @@ var native_accessor = {
         var message=json_message.messages[0].message.replace(/\s/g,"");
         var person_name=message.substring(2);
         var person_phone=json_message.messages[0].phone;
-        var current_activity=JSON.parse(localStorage['current_activity']);
+        var current_activity=JSON.parse(localStorage.getItem('current_activity'));
+        var signing_up=JSON.parse(localStorage.getItem('signing_up'));
+
 
         if(message.search(/bm/i) == 0){
-            if(current_activity.state==0){    //报名活动没开始
-                native_accessor.send_sms(json_message.messages[0].phone,"活动尚未开始，请稍后");
-            }
-            else if(current_activity.state==1){ //报名活动正在进行
-               var i=judge_phone_number(json_message.messages[0].phone,current_activity); //判断电话号码是否重复
+
+            if(signing_up.state==1){ //报名活动正在进行
+               var i=judge_phone_number(json_message.messages[0].phone,signing_up); //判断电话号码是否重复
 
                 if(i==1){
                     native_accessor.send_sms(json_message.messages[0].phone,"恭喜！报名成功");
                     var messages=[];
-                    var message=new Message(current_activity,person_name,person_phone);
+                    var message=new Message(signing_up,person_name,person_phone);
                     messages.unshift(message);
                     localStorage['message']=JSON.stringify(messages);
-                    var scope = angular.element('#register').scope();
+
+                    var scope = angular.element('#register').scope(); //报名信息存储之后触发报名页面的刷新功能
                     scope.$apply(function () {
-                        scope.refresh_sign_up_info();
+                    scope.refresh_sign_up_info();
                     });
                 }
                 else if(i==0){
@@ -42,25 +43,24 @@ var native_accessor = {
                 else{
                     native_accessor.send_sms(json_message.messages[0].phone,"恭喜！报名成功");
                     var messages=JSON.parse(localStorage['message']);
-                    var message=new Message(current_activity,person_name,person_phone);
+                    var message=new Message(signing_up,person_name,person_phone);
                     messages.unshift(message);
                     localStorage['message']=JSON.stringify(messages);
+
                     var scope = angular.element('#register').scope();
                     scope.$apply(function () {
-                        scope.refresh_sign_up_info();
+                    scope.refresh_sign_up_info();
                     });
                 }
-
-
             }
             else{
-                native_accessor.send_sms(json_message.messages[0].phone,"Sorry,报名活动已结束");
+                native_accessor.send_sms(json_message.messages[0].phone,"Sorry,报名活动未开始或者活动已结束");
             }
         }
 
         function judge_phone_number(phone,activity){
             if(localStorage.message==null){
-                return 1;       //localStorage.message里没有存号码，返回1
+                return 1;           //localStorage.message里没有存号码，返回1
             }
             else{
                 var messages=JSON.parse(localStorage['message']);

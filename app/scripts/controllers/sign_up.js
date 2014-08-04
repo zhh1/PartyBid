@@ -16,6 +16,8 @@ angular.module('PartyBidApp')
                     $scope.start_or_end="开始";
                     activity.state=2;
                     fresh(activity);
+                    var signing_up=JSON.parse(localStorage.getItem('current_activity'));
+                    localStorage['signing_up']=JSON.stringify(signing_up);
                 }
                 else
                 {
@@ -26,12 +28,21 @@ angular.module('PartyBidApp')
                 $scope.start_or_end="结束";
                 activity.state=1;
                 fresh(activity);
+                var signing_up=JSON.parse(localStorage.getItem('current_activity'));
+                localStorage['signing_up']=JSON.stringify(signing_up);
             }
 
         }
 
-        $scope.refresh_sign_up_info = function () {
-            $scope.messages=JSON.parse(localStorage.getItem('message') || '[]');
+        $scope.refresh_sign_up_info = function () {   //刷新报名页面的信息列表
+            var current_message=[];
+            var all_messages=JSON.parse(localStorage.getItem('message') || '[]');
+            for(var i=0;i<all_messages.length;i++) {
+                if (all_messages[i].activity == activity.name) {
+                    current_message.push(all_messages[i]);   //将当前活动的信息提取出来
+                }
+            }
+            $scope.messages=current_message;
             $scope.sign_up_quantity=$scope.messages.length;
         };
 
