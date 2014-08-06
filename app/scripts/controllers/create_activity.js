@@ -19,8 +19,6 @@ angular.module('PartyBidApp')
                     storage(activities,activity_object);
                     $location.path('/sign_up');
                     localStorage['current_activity']=JSON.stringify(activity_object);
-
-                    localStorage['signing_up']=JSON.stringify(activity_object);
                 }
                 else{
                     $scope.tip="*活动名称重复";
@@ -28,12 +26,11 @@ angular.module('PartyBidApp')
 
             }
             else{                                     //localStorage里没有存储活动，创建新数组并存储活动
-                var activityname=new activity(present_name);
+                var activities=new activity(present_name);
                 var activity_array=[];
-                storage(activity_array,activityname);
+                storage(activity_array,activities);
                 $location.path('/sign_up');
-                localStorage['current_activity']=JSON.stringify(activityname);
-                localStorage['signing_up']=JSON.stringify(activityname);
+                localStorage['current_activity']=JSON.stringify(activities);
             }
 
 

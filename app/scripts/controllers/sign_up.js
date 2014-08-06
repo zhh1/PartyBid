@@ -12,16 +12,11 @@ angular.module('PartyBidApp')
             if(activity.state==1){
                 if (confirm("你确定结束报名吗？"))
                 {
-                    alert("确定结束报名");
                     $scope.start_or_end="开始";
                     activity.state=2;
                     fresh(activity);
                     var signing_up=JSON.parse(localStorage.getItem('current_activity'));
                     localStorage['signing_up']=JSON.stringify(signing_up);
-                }
-                else
-                {
-                    alert("取消结束报名");
                 }
             }
             else{
@@ -46,7 +41,7 @@ angular.module('PartyBidApp')
             $scope.sign_up_quantity=$scope.messages.length;
         };
 
-       $scope.refresh_sign_up_info();
+        $scope.refresh_sign_up_info();
 
         function start_or_end_judgment(activity){       //判断按键的初始状态
             var activities=JSON.parse(localStorage.getItem("activity"));

@@ -39,3 +39,19 @@ function Message(activity,name,phone){     //定义一个Message对象，包含a
     this.phone=phone;
 }
 
+function judge_phone_number(phone,activity){
+    if(localStorage.message==null){
+        return 1;           //localStorage.message里没有存号码，返回1
+    }
+    else{
+        var messages=JSON.parse(localStorage['message']);
+        for(var i=0;i<messages.length;i++){
+            if(messages[i].phone==phone&&messages[i].activity==activity.name){
+                return 0;   //当前报名的活动里，号码重复，返回0
+            }
+            else{
+                return 2;  //号码未重复，返回2
+            }
+        }
+    }
+}
