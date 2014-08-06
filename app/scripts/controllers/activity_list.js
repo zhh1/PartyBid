@@ -4,7 +4,7 @@
 angular.module('PartyBidApp')
     .controller('ActivityListCtrl', function ($scope, $location) {
 
-        $scope.activities=JSON.parse(localStorage['activity']);
+        $scope.activities=Activity.get_activities();
 
         $scope.create_activity= function () {
                 $location.path('/create_activity');
@@ -12,7 +12,7 @@ angular.module('PartyBidApp')
 
         $scope.goto_sign_up= function (activity) {
             $location.path('/sign_up');
-            localStorage['current_activity']=JSON.stringify(activity);
+            Activity.set_current_activity(activity);
         }
 
         $scope.activity_yellow = function (activity) {
