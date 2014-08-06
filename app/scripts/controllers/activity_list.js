@@ -16,7 +16,7 @@ angular.module('PartyBidApp')
         }
 
         $scope.activity_yellow = function (activity) {
-            if (activity.state == 1) {
+            if (activity.state == "end") {
                     return "start";
                 }
             }

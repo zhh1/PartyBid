@@ -1,6 +1,6 @@
 function Activity(name) {
     this.name = name;
-    this.state = 0;
+    this.state = "start";
 };
 
 Activity.set_activities = function(activities) {
@@ -23,15 +23,24 @@ Activity.set_signing_up_activity = function(activity) {
     localStorage['signing_up'] = JSON.stringify(activity);
 };
 
-Activity.judge_start_or_end = function() {
+Activity.judge_start_or_end_state = function() {
     var activities = Activity.get_activities();
     var n=0
     for(var i=0;i<activities.length;i++){
-       if(parseInt(activities[i].state%2)!=0){
+       if(activities[i].state == "end"){
            n++;
        }
     }
     return n;
+};
+
+Activity.judge_start_or_end = function(n,activity){
+    if(n && activity.state == "end") {
+        return "结束";
+    }
+    else {
+        return "开始";
+    }
 };
 
 Activity.prototype.save = function() {

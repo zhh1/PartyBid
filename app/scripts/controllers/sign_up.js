@@ -4,28 +4,31 @@ angular.module('PartyBidApp')
         $scope.back_to_activity_list=function(){$location.path('/activity_list')};
 
         var current_activity = Activity.get_current_activity();
-        if(!Activity.judge_start_or_end()) {
-            $scope.start_or_end = "开始";
-        }
-        else if(current_activity.state == 1) {
-            $scope.start_or_end="结束";
-        }
-        else {
-            $scope.start_or_end = "开始";
-            $scope.is_there_any_activity_signing_up = 1;
-        }
+        var activity = new Activity(current_activity.name);
+        activity.state = current_activity.state;
+        var n = Activity.judge_start_or_end_state();
+        $scope.start_or_end=Activity.judge_start_or_end(n,activity);
 
-        $scope.start_sign_up = function() {
-            if(current_activity.state) {
-                end_confirm($scope.start_or_end,current_activity);
-            }
-            else {
-                $scope.start_or_end = "结束";
-                current_activity.change_state(0);
-                current_activity.fresh_activity_state();
-                var signing_up = Activity.get_current_activity();
-                Activity.set_signing_up_activity(signing_up);
-            }
+        $scope.start_sign_up = function(start_or_end_state) {
+            var judge_state = {
+                "开始": function () {
+                    $scope.start_or_end = "结束";
+                    activity.change_state("end");
+                    activity.fresh_activity_state();
+                    var signing_up = Activity.get_current_activity();
+                    Activity.set_signing_up_activity(signing_up);
+                },
+                "结束": function () {
+                    if (confirm("你确定结束报名吗？")) {
+                        $scope.start_or_end = "开始";
+                        activity.change_state("start");
+                        activity.fresh_activity_state();
+                        var signing_up = Activity.get_current_activity();
+                        Activity.set_signing_up_activity(signing_up);
+                    }
+                }
+            };
+            judge_state[start_or_end_state]();
         }
 
         $scope.refresh_sign_up_info = function () {   //刷新报名页面的信息列表
@@ -36,6 +39,19 @@ angular.module('PartyBidApp')
         $scope.refresh_sign_up_info();
 
     });
+
+
+
+//if(!Activity.judge_start_or_end()) {
+//    $scope.start_or_end = "开始";
+//}
+//else if(current_activity.state == 1) {
+//    $scope.start_or_end="结束";
+//}
+//else {
+//    $scope.start_or_end = "开始";
+//    $scope.is_there_any_activity_signing_up = 1;
+//}
 
 //        var activity=JSON.parse(localStorage.getItem('current_activity') || '[]');
 //        start_or_end_judgment(activity);    //初始时判断按键是什么状态

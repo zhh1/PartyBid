@@ -10,7 +10,7 @@ angular.module('PartyBidApp')
             var activity = new Activity($scope.activity_name);
             if (activity.is_repeat()) {
                 activity.save();
-                activity.set_current_activity();
+                Activity.set_current_activity(activity);
                 return  $location.path('/sign_up');
             }
             else {
