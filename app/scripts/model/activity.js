@@ -43,6 +43,12 @@ Activity.judge_start_or_end = function(n,activity){
     }
 };
 
+Activity.button_disabled = function(n,activity) {
+    if( n==1 && activity.state=="start"){
+        return 1;
+    }
+};
+
 Activity.prototype.save = function() {
     var activities = Activity.get_activities();
     activities.unshift(this);
