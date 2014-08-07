@@ -18,7 +18,4 @@ angular.module('PartyBidApp')
                 $scope.tip = "*活动名称重复";
             }
         };
-
-
-
     });
