@@ -17,7 +17,7 @@ var native_accessor = {
         var person_name = Message.get_person_name(message);
         var person_phone = Message.get_person_phone(json_message);
         var signing_up_activity = Activity.get_signing_up_activity();
-        messages_init();
+
         var is_sign_up_successful = {        //判断报名是否成功
             0: function () {
                 native_accessor.send_sms(person_phone, "您已经报名过了");
@@ -35,6 +35,7 @@ var native_accessor = {
 
         if(message.search(/bm/i) == 0){
             var i = Message.judge_phone_number(person_phone,signing_up_activity); //判断号码是否重复
+
             var is_activity_signing_up = {         //判断报名是否开始
                 "start":function() {
                     native_accessor.send_sms(person_phone,"对不起,报名活动未开始或者活动已结束");

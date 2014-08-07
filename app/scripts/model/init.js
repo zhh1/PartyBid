@@ -18,6 +18,7 @@ function signing_up_activity_init() {
 
 function messages_init() {
     if (!localStorage['messages']) {
+
         localStorage['messages'] = JSON.stringify([]);
     }
 };

@@ -36,7 +36,7 @@ Message.get_person_phone = function(json_message) {
 };
 
 Message.judge_phone_number = function(phone,activity){
-    if(localStorage.messages!=null) {
+    if(Message.get_messages().length != 0) {
         var messages = Message.get_messages();
         for(var i = 0;i<messages.length;i++){
             var n = messages[i].phone == phone && messages[i].activity == activity.name;
