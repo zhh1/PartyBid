@@ -8,7 +8,7 @@ Activity.set_activities = function(activities) {
 };
 
 Activity.get_activities = function() {
-    return JSON.parse(localStorage.getItem("activities") || '[]');
+    return JSON.parse(localStorage.getItem("activities"));
 };
 
 Activity.set_current_activity = function(activity) {
@@ -16,7 +16,7 @@ Activity.set_current_activity = function(activity) {
 };
 
 Activity.get_current_activity = function() {
-    return JSON.parse(localStorage.getItem("current_activity") || '[]');
+    return JSON.parse(localStorage.getItem("current_activity"));
 };
 
 Activity.set_signing_up_activity = function(activity) {
@@ -24,7 +24,7 @@ Activity.set_signing_up_activity = function(activity) {
 };
 
 Activity.get_signing_up_activity = function() {
-    return JSON.parse(localStorage.getItem("signing_up") || '[]');
+    return JSON.parse(localStorage.getItem("signing_up"));
 };
 
 Activity.judge_start_or_end_state = function() {

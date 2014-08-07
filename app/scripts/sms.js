@@ -17,6 +17,7 @@ var native_accessor = {
         var person_name = Message.get_person_name(message);
         var person_phone = Message.get_person_phone(json_message);
         var signing_up_activity = Activity.get_signing_up_activity();
+        messages_init();
         var is_sign_up_successful = {        //判断报名是否成功
             0: function () {
                 native_accessor.send_sms(person_phone, "您已经报名过了");
@@ -46,42 +47,6 @@ var native_accessor = {
         }
     }
 };
-//            if(signing_up_activity.state==1){ //报名活动正在进行
-//               var i=Message.judge_phone_number(person_phone,signing_up_activity); //判断电话号码是否重复
-
-//                if(i==1){
-//                    native_accessor.send_sms(person_phone,"恭喜！报名成功");
-//                    var messages=[];
-//                    messages.unshift(message);
-//                    localStorage['message']=JSON.stringify(messages);
-//
-//                    var scope = angular.element('#register').scope(); //报名信息存储之后触发报名页面的刷新功能
-//                    scope.$apply(function () {
-//                    scope.refresh_sign_up_info();
-//                    });
-//                }
-//                else if(i==0){
-//                    native_accessor.send_sms(person_phone,"您已经报名过了");
-//                }
-//                else{
-//                    native_accessor.send_sms(person_phone,"恭喜！报名成功");
-//                    var messages=JSON.parse(localStorage['message']);
-//                    var message=new Message(signing_up_activity,person_name,person_phone);
-//                    messages.unshift(message);
-//                    localStorage['message']=JSON.stringify(messages);
-//
-//                    var scope = angular.element('#register').scope();
-//                    scope.$apply(function () {
-//                    scope.refresh_sign_up_info();
-//                    });
-//                }
-//            }
-//            else{
-//                native_accessor.send_sms(person_phone,"对不起,报名活动未开始或者活动已结束");
-//            }
-
-
-
 
 function notify_message_received(message_json) {
     //console.log(JSON.stringify(message_json));(

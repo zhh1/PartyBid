@@ -9,7 +9,7 @@ Message.set_messages = function(messages) {
 };
 
 Message.get_messages = function() {
-    return JSON.parse(localStorage.getItem("messages") || '[]');
+    return JSON.parse(localStorage.getItem("messages"));
 };
 
 Message.get_current_activity_messages = function(activity) {

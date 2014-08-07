@@ -1,0 +1,8 @@
+header(class='header')
+  p 活动列表
+  .header-right
+    button(class='side-slide-trigger btn-style btn-4' ng-click='create_activity()') 创建活动
+
+#wrapper.wrapper
+  ul.list-style-2
+    li(ng-repeat='activity in activities' ng-click='goto_sign_up(activity)' class='{{activity_yellow(activity)}}') {{activity.name}}

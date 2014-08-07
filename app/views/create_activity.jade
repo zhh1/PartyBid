@@ -1,0 +1,10 @@
+header 创建活动
+  .header-left
+    a.side-slide-trigger.btn-style.btn-4(href="#/activity_list" ng-show="is_there_any_activity") 返回
+
+#wrapper.wrapper.scrollable
+  .wrapper-inner
+    div 活动名称
+      input.input-full(type="text",ng-model="activity_name")
+      p(style="color: red") {{tip}}
+    button.btn.btn-2(ng-disabled="!activity_name" ng-click="confirm_create()") 创建

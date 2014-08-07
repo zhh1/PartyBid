@@ -2,7 +2,7 @@
 angular.module('PartyBidApp')
     .controller('SignUpCtrl', function ($scope, $location) {
         $scope.back_to_activity_list=function(){$location.path('/activity_list')};
-
+        signing_up_activity_init();
         var current_activity = Activity.get_current_activity();
         var activity = new Activity(current_activity.name);
         activity.state = current_activity.state;

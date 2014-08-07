@@ -1,0 +1,17 @@
+header#register.header 报名（{{sign_up_quantity}}人）
+  .header-left
+    button.btn-style.btn-4(ng-click="back_to_activity_list()") 返回
+  .header-right
+    button.btn-style.btn.btn-4(ng-click="start_sign_up(start_or_end)",ng-disabled="is_there_any_activity_signing_up") {{start_or_end}}
+
+#wrapper.wrapper
+  ul.list-style-2
+    li(ng-repeat='message in messages') {{message.name}}
+      i {{message.phone}}
+
+footer
+  ul.footer-nav.footer-nav-2tabs
+    li.active: a(href="/#/sign_up") 报名
+      br
+    li 竞价
+      br
