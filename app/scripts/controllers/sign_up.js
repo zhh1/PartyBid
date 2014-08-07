@@ -35,7 +35,7 @@ angular.module('PartyBidApp')
         }
 
         $scope.refresh_sign_up_info = function () {   //刷新报名页面的信息列表
-            $scope.messages=Message.get_current_messages(current_activity);
+            $scope.messages=Message.get_current_activity_messages(current_activity);
             $scope.sign_up_quantity = $scope.messages.length;
         };
 

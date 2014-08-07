@@ -23,6 +23,10 @@ Activity.set_signing_up_activity = function(activity) {
     localStorage['signing_up'] = JSON.stringify(activity);
 };
 
+Activity.get_signing_up_activity = function() {
+    return JSON.parse(localStorage.getItem("signing_up") || '[]');
+};
+
 Activity.judge_start_or_end_state = function() {
     var activities = Activity.get_activities();
     var n=0
