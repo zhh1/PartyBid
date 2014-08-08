@@ -47,8 +47,8 @@ Activity.judge_start_or_end = function(n,activity){
     }
 };
 
-Activity.button_disabled = function(n,activity) {
-    if( n==1 && activity.state=="start"){
+Activity.button_disabled = function(n,activity,signing_up) {
+    if( (n==1 && activity.state=="start") || signing_up.price_state == "start"){
         return 1;
     }
 };

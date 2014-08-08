@@ -11,7 +11,7 @@ angular.module('PartyBidApp')
 
         $scope.start_or_end=Activity.judge_start_or_end(n,activity);
 
-        $scope.is_there_any_activity_signing_up = Activity.button_disabled(n,activity);
+        $scope.is_there_any_activity_signing_up = Activity.button_disabled(n,activity,Price.get_price_signing_up());
 
         $scope.start_sign_up = function(start_or_end_state) {
             var judge_state = {

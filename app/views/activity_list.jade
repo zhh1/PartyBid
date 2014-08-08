@@ -1,7 +1,7 @@
 header(class='header')
   p 活动列表
   .header-right
-    button(class='side-slide-trigger btn-style btn-4' ng-click='create_activity()') 创建活动
+    button(class='btn-style btn btn-4' ng-click='create_activity()' ng-disabled="is_there_any_price_competing") 创建活动
 
 #wrapper.wrapper
   ul.list-style-2
