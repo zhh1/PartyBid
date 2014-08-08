@@ -5,7 +5,7 @@ angular.module('PartyBidApp')
         signing_up_activity_init();
         messages_init();
         var current_activity = Activity.get_current_activity();
-        var activity = new Activity(current_activity.name);
+        var activity = new Activity(current_activity.activity_name);
         activity.state = current_activity.state;
         var n = Activity.judge_start_or_end_state();
 

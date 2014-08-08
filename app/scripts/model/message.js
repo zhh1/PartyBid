@@ -1,6 +1,6 @@
 function Message(activity,name,phone){     //定义一个Message对象，包含activity,name,phone三个属性
-    this.activity=activity.name;
-    this.name=name;
+    this.activity_name=activity.activity_name;
+    this.person_name=name;
     this.phone=phone;
 };
 
@@ -16,7 +16,7 @@ Message.get_current_activity_messages = function(activity) {
     var current_message = [];
     var all_messages = Message.get_messages();
     for(var i = 0;i<all_messages.length;i++) {
-       if (all_messages[i].activity == activity.name) {
+       if (all_messages[i].activity_name == activity.activity_name) {
           current_message.push(all_messages[i]);   //将当前活动的信息提取出来
        }
     }
@@ -39,7 +39,7 @@ Message.judge_phone_number = function(phone,activity){
     if(Message.get_messages().length != 0) {
         var messages = Message.get_messages();
         for(var i = 0;i<messages.length;i++){
-            var n = messages[i].phone == phone && messages[i].activity == activity.name;
+            var n = messages[i].phone == phone && messages[i].activity_name == activity.activity_name;
             var is_phone_number_repeat = {
                 true:function(){
                     return 0;   //当前报名的活动里，号码重复，返回0

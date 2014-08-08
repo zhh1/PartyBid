@@ -29,3 +29,17 @@ function prices_init() {
         localStorage['prices'] = JSON.stringify([]);
     }
 };
+
+function current_price_init() {
+    if (!localStorage['current_price']) {
+
+        localStorage['current_price'] = JSON.stringify([]);
+    }
+};
+
+function price_signing_up_init() {
+    if (!localStorage['price_signing_up']) {
+
+        localStorage['price_signing_up'] = JSON.stringify([]);
+    }
+};

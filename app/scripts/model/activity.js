@@ -1,5 +1,5 @@
 function Activity(name) {
-    this.name = name;
+    this.activity_name = name;
     this.state = "start";
 };
 
@@ -63,7 +63,7 @@ Activity.prototype.is_repeat = function() {
     var i=1;
     var activities = Activity.get_activities();
     for (var n = 0; n < activities.length; n++) {    //遍历localStorage里的活动，查看是否有重复的名称
-        if (activities[n].name == this.name) {
+        if (activities[n].activity_name == this.activity_name) {
             i = 0;
         }
     }
@@ -73,7 +73,7 @@ Activity.prototype.is_repeat = function() {
 Activity.prototype.fresh_activity_state = function() {
     var activities = Activity.get_activities();
     for(var i=0;i<activities.length;i++){
-        if(activities[i].name == this.name){
+        if(activities[i].activity_name == this.activity_name){
             activities[i].state = this.state;
             Activity.set_activities(activities);
         }
