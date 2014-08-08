@@ -27,6 +27,16 @@ angular
                 controller: 'SignUpCtrl'
 
             })
+            .when('/price_list',{
+                templateUrl: 'views/price_list.html',
+                controller: 'PriceListCtrl'
+
+            })
+            .when('/price_sign_up',{
+                templateUrl: 'views/price_sign_up.html',
+                controller: 'PriceSignUpCtrl'
+
+            })
             .otherwise({
                 redirectTo: '/activity_list'
             });
