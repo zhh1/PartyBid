@@ -2,7 +2,7 @@ header.header 竞价
   .header-left
     a.side-slide-trigger.btn-style.btn-4(href="#/activity_list") 返回
   .header-right
-    button.btn-style.btn.btn-4 开始
+    button.btn-style.btn.btn-4(ng-click="create_price_competition()" ng-disabled="is_there_any_price_competing()") 开始
 
 
 footer

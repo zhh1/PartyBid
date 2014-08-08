@@ -29,6 +29,7 @@ angular.module('PartyBidApp')
                         activity.fresh_activity_state();
                         var signing_up = Activity.get_current_activity();
                         Activity.set_signing_up_activity(signing_up);
+                        $location.path('/price_list');
                     }
                 }
             };

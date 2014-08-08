@@ -1,6 +1,4 @@
-/**
- * Created by jjq on 14-7-21.
- */
+
 angular.module('PartyBidApp')
     .controller('ActivityListCtrl', function ($scope, $location) {
 

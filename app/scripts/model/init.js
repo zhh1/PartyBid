@@ -22,3 +22,10 @@ function messages_init() {
         localStorage['messages'] = JSON.stringify([]);
     }
 };
+
+function prices_init() {
+    if (!localStorage['prices']) {
+
+        localStorage['prices'] = JSON.stringify([]);
+    }
+};
