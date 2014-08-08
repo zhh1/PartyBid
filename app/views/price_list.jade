@@ -6,7 +6,7 @@ header.header 竞价
 
 #wrapper.wrapper
   ul.list-style-2
-    li(ng-repeat='price in prices' ng-click="go_to_price_sign_up(price)") {{price.price_name}}
+    li(ng-repeat='price in prices' ng-click="go_to_price_sign_up(price)" class="{{price_yellow(price)}}") {{price.price_name}}
 
 footer
   ul.footer-nav.footer-nav-2tabs

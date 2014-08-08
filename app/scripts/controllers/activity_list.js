@@ -14,7 +14,8 @@ angular.module('PartyBidApp')
         }
 
         $scope.activity_yellow = function (activity) {
-            if (activity.state == "end") {
+            var status = Price.get_price_signing_up().price_state == "start" && Price.get_price_signing_up().activity_name == activity.activity_name
+            if (activity.state == "end" || status) {
                     return "start";
             }
         }

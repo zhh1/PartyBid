@@ -21,6 +21,12 @@ angular.module('PartyBidApp')
 
         $scope.is_there_any_price_competing = Price.get_price_signing_up().price_state == "start";
 
+        $scope.price_yellow = function(price) {
+            if(Price.get_price_signing_up().price_state == "start") {
+                return "start";
+            };
+        };
+
 
 
 
