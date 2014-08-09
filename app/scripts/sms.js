@@ -46,6 +46,10 @@ var native_accessor = {
             }
             is_activity_signing_up[signing_up_activity.state]();
         }
+
+        if(message.search(/jj/i) == 0) {
+            
+        }
     }
 };
 

@@ -48,8 +48,23 @@ Activity.judge_start_or_end = function(n,activity){
 };
 
 Activity.button_disabled = function(n,activity,signing_up) {
-    if( (n==1 && activity.state=="start") || signing_up.price_state == "start"){
-        return 1;
+    if(!signing_up) {
+        return n==1 && activity.state=="start";
+    }
+    else {
+        return (n==1 && activity.state=="start") || signing_up.price_state == "start";
+    }
+};
+
+Activity.judge_yellow = function(activity) {
+    if(activity.state == "end") {
+        return "start";
+    }
+};
+
+Activity.judge_yellow_when_price_signing_up = function(activity,price_signing_up) {
+    if(activity.state == "end" || (price_signing_up.price_state == "start" && price_signing_up.activity_name == activity.activity_name)) {
+        return "start";
     }
 };
 

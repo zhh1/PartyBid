@@ -5,7 +5,7 @@ angular.module('PartyBidApp')
         $scope.activities=Activity.get_activities();
 
         $scope.create_activity= function () {
-                $location.path('/create_activity');
+            $location.path('/create_activity');
          }
 
         $scope.goto_sign_up= function (activity) {
@@ -14,11 +14,13 @@ angular.module('PartyBidApp')
         }
 
         $scope.activity_yellow = function (activity) {
-            var status = Price.get_price_signing_up().price_state == "start" && Price.get_price_signing_up().activity_name == activity.activity_name
-            if (activity.state == "end" || status) {
-                    return "start";
+            if(!Price.get_price_signing_up()) {
+                return Activity.judge_yellow(activity);
+            }
+            else {
+                return Activity.judge_yellow_when_price_signing_up(activity,Price.get_price_signing_up());
             }
         }
 
-        $scope.is_there_any_price_competing = Price.get_price_signing_up().price_state == "start";
+        $scope.is_there_any_price_competing = Price.judge_is_price_signing_up();
     });

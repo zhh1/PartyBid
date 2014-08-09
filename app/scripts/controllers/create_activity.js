@@ -5,6 +5,7 @@ angular.module('PartyBidApp')
     .controller('CreateActivityCtrl', function ($scope, $location) {
         current_activity_init();
         activities_init();
+        price_signing_up_init();
         $scope.is_there_any_activity = Activity.get_activities().length;
 
         $scope.confirm_create = function () {
