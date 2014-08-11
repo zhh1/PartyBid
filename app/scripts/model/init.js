@@ -43,3 +43,10 @@ function price_signing_up_init() {
         localStorage['price_signing_up'] = JSON.stringify([]);
     }
 };
+
+function price_messages_init() {
+    if (!localStorage['price_messages']) {
+
+        localStorage['price_messages'] = JSON.stringify([]);
+    }
+};

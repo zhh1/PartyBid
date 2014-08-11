@@ -12,6 +12,7 @@ Message.get_messages = function() {
     return JSON.parse(localStorage.getItem("messages"));
 };
 
+
 Message.get_current_activity_messages = function(activity) {
     var current_message = [];
     var all_messages = Message.get_messages();
@@ -27,12 +28,22 @@ Message.delete_blank_spaces = function(json_message) {
     return json_message.messages[0].message.replace(/\s/g,"");
 };
 
-Message.get_person_name = function(message) {
+Message.get_person_name_or_price = function(message) {
     return message.substring(2);
 };
 
+
 Message.get_person_phone = function(json_message) {
     return json_message.messages[0].phone;
+};
+
+Message.find_person_name = function(person_phone) {
+    var current_activity_messages = Message.get_current_activity_messages(Activity.get_signing_up_activity());
+    for(var i = 0;i<current_activity_messages.length;i++) {
+        if(current_activity_messages[i].phone == person_phone){
+            return current_activity_messages[i].person_name;
+        }
+    }
 };
 
 Message.judge_phone_number = function(phone,activity){

@@ -47,8 +47,6 @@ Price.judge_is_price_signing_up = function() {
     }
 };
 
-
-
 Price.prototype.save = function() {
     var prices = Price.get_prices();
     prices.unshift(this);

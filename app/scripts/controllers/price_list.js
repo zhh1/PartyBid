@@ -3,7 +3,7 @@ angular.module('PartyBidApp')
         prices_init();
         current_price_init();
         $scope.create_price_competition = function() {
-            var n = Price.get_prices().length + 1;
+            var n = Price.get_price_of_current_activity().length + 1;
             var price_competition = new Price("竞价" + n,Activity.get_current_activity().activity_name);
             price_competition.save();
             Price.set_current_price(price_competition);

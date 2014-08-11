@@ -14,22 +14,63 @@ var native_accessor = {
 
     process_received_message: function (json_message) {
         var message = Message.delete_blank_spaces(json_message);
-        var person_name = Message.get_person_name(message);
+        var person_name_or_price = Message.get_person_name_or_price(message);
         var person_phone = Message.get_person_phone(json_message);
         var signing_up_activity = Activity.get_signing_up_activity();
+        var price_signing_up = Price.get_price_signing_up();
+        var person_name = Message.find_person_name(person_phone);
 
-        var is_sign_up_successful = {        //判断报名是否成功
+        var is_sign_up_successful = {        //判断报名能否成功
             0: function () {
                 native_accessor.send_sms(person_phone, "您已经报名过了");
             },
             1: function () {
                 native_accessor.send_sms(person_phone, "恭喜！报名成功");
-                var new_message = new Message(signing_up_activity, person_name, person_phone);
+                var new_message = new Message(signing_up_activity, person_name_or_price, person_phone);
                 new_message.save();
                 var scope = angular.element('#register').scope();  //报名成功后刷新报名页面信息列表
                 scope.$apply(function () {
                     scope.refresh_sign_up_info();
                 });
+            }
+        }
+
+        var is_sign_up_succeed = {           //判断竞价的人是否报名过
+            true: function() {
+                is_phone_repeat[PriceMessages.is_price_phone_repeat(person_phone)]();
+            },
+            false: function() {
+                native_accessor.send_sms(person_phone, "对不起，您未报名，无法参与竞价");
+            }
+        }
+
+//        var is_price_name_repeat = {        //判断是否是同一次竞价
+//            true: function() {
+//                is_phone_repeat[PriceMessages.is_price_phone_repeat(person_phone)];
+//            },
+//            false: function() {
+//                native_accessor.send_sms(person_phone, "恭喜！竞价成功");
+//                var price_message = new PriceMessages(price_signing_up.activity_name,price_signing_up.price_name,person_name,person_phone,person_name_or_price);
+//                price_message.save();
+//                var scope = angular.element('#price').scope();  //报名成功后刷新报名页面信息列表
+//                scope.$apply(function () {
+//                    scope.refresh_price_sign_up_info();
+//                });
+//            }
+//        }
+
+        var is_phone_repeat = {        //判断竞价是否重复
+            true: function() {
+                native_accessor.send_sms(person_phone, "恭喜！竞价成功");
+                var price_message = new PriceMessages(price_signing_up.activity_name,price_signing_up.price_name,person_name,person_phone,person_name_or_price);
+                price_message.save();
+                var scope = angular.element('#price').scope();  //报名成功后刷新报名页面信息列表
+                scope.$apply(function () {
+                    scope.refresh_price_sign_up_info();
+                });
+            },
+            false:function() {
+                native_accessor.send_sms(person_phone, "对不起,您已经竞价过了，请不要重复竞价");
             }
         }
 
@@ -48,7 +89,17 @@ var native_accessor = {
         }
 
         if(message.search(/jj/i) == 0) {
-            
+            var is_price_signing_up = {           //判断竞价是否开始
+                true: function() {
+                    is_sign_up_succeed[PriceMessages.is_someone_sign_up_succeed(person_phone)]();
+                },
+                false: function() {
+                    native_accessor.send_sms(person_phone,"对不起,竞价活动未开始或者活动已结束");
+                }
+            }
+
+            is_price_signing_up[Price.judge_is_price_signing_up()]();
+
         }
     }
 };

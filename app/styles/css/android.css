@@ -501,6 +501,15 @@ footer {
 	margin: 0;
 }
 
+.list-style{
+    
+    border-bottom:1px solid #ccc;
+    border-top:1px solid #fff;
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
+    font-size:20px;
+    position: relative;
+}
+
 .list-style-1 {
 	list-style: none;
 	margin: 0;
