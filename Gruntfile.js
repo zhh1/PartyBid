@@ -33,6 +33,10 @@ module.exports = function (grunt) {
         files: ['bower.json'],
         tasks: ['wiredep']
       },
+      jade: {
+        files: ['<%= yeoman.app %>/{,*/}*.jade'],
+        tasks: ['jade']
+      },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
@@ -64,6 +68,22 @@ module.exports = function (grunt) {
     },
 
     // The actual grunt server settings
+    jade: {
+      compile: {
+        options: {
+          client: false,
+          pretty: true
+        },
+        files: [{
+          cwd: "<%= yeoman.app %>",
+          src: "{,*/}*.jade",
+          dest: ".tmp",
+          expand: true,
+          ext: ".html"
+        }]
+      }
+    },
+
     connect: {
       options: {
         port: 9000,
@@ -321,6 +341,11 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }, {
           expand: true,
+          cwd: '.tmp/views',
+          dest: '<%= yeoman.dist %>/views',
+          src: '*.html'
+        }, {
+          expand: true,
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
@@ -366,6 +391,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'jade',
       'wiredep',
       'concurrent:server',
      // 'autoprefixer',
@@ -389,6 +415,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'jade',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
