@@ -19,7 +19,7 @@ angular.module('PartyBidApp')
             $location.path('/price_sign_up');
         };
 
-        $scope.is_there_any_price_competing = Price.get_price_signing_up().price_state == "start";
+        $scope.is_there_any_price_competing = Price.get_price_signing_up().price_state == "start" || Activity.get_signing_up_activity().state == "end" || !Message.get_current_activity_messages(Activity.get_current_activity()).length;
 
         $scope.price_yellow = function(price) {
             if(Price.get_price_signing_up().price_state == "start" && Price.get_price_signing_up().price_name == price.price_name && Price.get_price_signing_up().activity_name == price.activity_name) {
