@@ -18,7 +18,7 @@ angular.module('PartyBidApp')
         $scope.is_the_price_sign_up_ended = Price.get_current_price().price_state == "end";
 
         $scope.refresh_price_sign_up_info = function () {   //刷新报名页面的信息列表
-            $scope.price_messages = PriceMessages.get_current_price_messages();
+            $scope.price_messages = PriceMessages.get_current_price_messages(Price.get_current_price());
             $scope.sign_up_quantity = $scope.price_messages.length;
         };
 

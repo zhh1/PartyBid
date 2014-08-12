@@ -37,27 +37,12 @@ var native_accessor = {
 
         var is_sign_up_succeed = {           //判断竞价的人是否报名过
             true: function() {
-                is_phone_repeat[PriceMessages.is_price_phone_repeat(person_phone)]();
+                is_phone_repeat[PriceMessages.is_price_phone_repeat(person_phone,Price.get_price_signing_up())]();
             },
             false: function() {
                 native_accessor.send_sms(person_phone, "对不起，您未报名，无法参与竞价");
             }
         }
-
-//        var is_price_name_repeat = {        //判断是否是同一次竞价
-//            true: function() {
-//                is_phone_repeat[PriceMessages.is_price_phone_repeat(person_phone)];
-//            },
-//            false: function() {
-//                native_accessor.send_sms(person_phone, "恭喜！竞价成功");
-//                var price_message = new PriceMessages(price_signing_up.activity_name,price_signing_up.price_name,person_name,person_phone,person_name_or_price);
-//                price_message.save();
-//                var scope = angular.element('#price').scope();  //报名成功后刷新报名页面信息列表
-//                scope.$apply(function () {
-//                    scope.refresh_price_sign_up_info();
-//                });
-//            }
-//        }
 
         var is_phone_repeat = {        //判断竞价是否重复
             true: function() {
@@ -97,9 +82,7 @@ var native_accessor = {
                     native_accessor.send_sms(person_phone,"对不起,竞价活动未开始或者活动已结束");
                 }
             }
-
             is_price_signing_up[Price.judge_is_price_signing_up()]();
-
         }
     }
 };

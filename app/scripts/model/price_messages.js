@@ -24,50 +24,19 @@ PriceMessages.is_someone_sign_up_succeed = function(person_phone) {
     return false;
 };
 
-PriceMessages.get_current_price_messages = function() {
+PriceMessages.get_current_price_messages = function(price) {
     var current_price_messages = [];
     for(var i = 0;i < PriceMessages.get_price_messages().length;i++) {
-        if(PriceMessages.get_price_messages()[i].activity_name == Price.get_price_signing_up().activity_name && PriceMessages.get_price_messages()[i].price_name == Price.get_price_signing_up().price_name) {
+        if(PriceMessages.get_price_messages()[i].activity_name == price.activity_name && PriceMessages.get_price_messages()[i].price_name == price.price_name) {
             current_price_messages.push(PriceMessages.get_price_messages()[i]);
         }
     }
     return current_price_messages;
 };
 
-//PriceMessages.judge_price_name_is_repeat = function() {
-//    for(var i = 0;i<PriceMessages.current_activity_price_messages().length;i++) {
-//        if(PriceMessages.current_activity_price_messages()[i].price_name == Price.get_price_signing_up().price_name) {
-//            return true;
-//        }
-//    }
-//    return false;
-//};
-
-//PriceMessages.current_activity_price_messages = function() {
-//    if(PriceMessages.get_price_messages()) {
-//        var current_activity_price_messages = [];
-//        for(var i=0;i<PriceMessages.get_price_messages().length;i++) {
-//            if(PriceMessages.get_price_messages()[i].activity_name == Price.get_price_signing_up().activity_name) {
-//               current_activity_price_messages.push(PriceMessages.get_price_messages()[i]);
-//            }
-//        }
-//        return current_activity_price_messages;
-//    }
-//};
-//
-//PriceMessages.current_price_name_messages = function() {
-//    var current_price_name_messages = [];
-//    for(var i = 0;i<PriceMessages.current_activity_price_messages().length;i++) {
-//        if(PriceMessages.current_activity_price_messages()[i].price_name == Price.get_price_signing_up().price_name) {
-//           current_price_name_messages.push(PriceMessages.current_activity_price_messages()[i]);
-//        }
-//    }
-//    return current_price_name_messages;
-//}
-
-PriceMessages.is_price_phone_repeat = function(person_phone) {
-    for(var i = 0;i< PriceMessages.get_current_price_messages().length;i++) {
-        if(PriceMessages.get_current_price_messages()[i].phone == person_phone) {
+PriceMessages.is_price_phone_repeat = function(person_phone,price) {
+    for(var i = 0;i< PriceMessages.get_current_price_messages(price).length;i++) {
+        if(PriceMessages.get_current_price_messages(price)[i].phone == person_phone) {
             return false;
         }
     }
