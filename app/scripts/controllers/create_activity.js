@@ -10,7 +10,7 @@ angular.module('PartyBidApp')
 
         $scope.confirm_create = function () {
             var activity = new Activity($scope.activity_name);
-            if (activity.is_repeat()) {
+            if (!activity.is_repeat()) {
                 activity.save();
                 Activity.set_current_activity(activity);
                 return  $location.path('/sign_up');

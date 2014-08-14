@@ -16,7 +16,10 @@ Activity.set_current_activity = function(activity) {
 };
 
 Activity.get_current_activity = function() {
-    return JSON.parse(localStorage.getItem("current_activity"));
+    var current_activity = JSON.parse(localStorage.getItem("current_activity"));
+    var activity = new Activity(current_activity.activity_name);
+    activity.state = current_activity.state;
+    return activity;
 };
 
 Activity.set_signing_up_activity = function(activity) {
@@ -29,22 +32,7 @@ Activity.get_signing_up_activity = function() {
 
 Activity.judge_start_or_end_state = function() {
     var activities = Activity.get_activities();
-    var n=0
-    for(var i=0;i<activities.length;i++){
-       if(activities[i].state == "end"){
-           n++;
-       }
-    }
-    return n;
-};
-
-Activity.judge_start_or_end = function(n,activity){
-    if(n && activity.state == "end") {
-        return "结束";
-    }
-    else {
-        return "开始";
-    }
+    return (_.where(activities,{state:"end"}) || []).length;
 };
 
 Activity.button_disabled = function(n,activity,signing_up) {
@@ -75,25 +63,16 @@ Activity.prototype.save = function() {
 };
 
 Activity.prototype.is_repeat = function() {
-    var i=1;
     var activities = Activity.get_activities();
-    for (var n = 0; n < activities.length; n++) {    //遍历localStorage里的活动，查看是否有重复的名称
-        if (activities[n].activity_name == this.activity_name) {
-            i = 0;
-        }
-    }
-    return i;
+    return _.some(activities,function (item) {
+        return item.activity_name == this.activity_name}, this);
 };
 
 Activity.prototype.fresh_activity_state = function() {
     var activities = Activity.get_activities();
-    for(var i=0;i<activities.length;i++){
-        if(activities[i].activity_name == this.activity_name){
-            activities[i].state = this.state;
-            Activity.set_activities(activities);
-        }
-        Activity.set_current_activity(this);
-    }
+    _.findWhere(activities,{activity_name:this.activity_name}).state = this.state;
+    Activity.set_activities(activities);
+    Activity.set_current_activity(this);
 };
 
 Activity.prototype.change_state = function(new_state) {
