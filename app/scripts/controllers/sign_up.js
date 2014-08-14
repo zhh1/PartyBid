@@ -4,11 +4,9 @@ angular.module('PartyBidApp')
         $scope.back_to_activity_list=function(){$location.path('/activity_list')};
         signing_up_activity_init();
         messages_init();
-//        var current_activity = Activity.get_current_activity();
         $scope.activity = Activity.get_current_activity();
-//        $scope.activity.state = current_activity.state;
-        var n = Activity.judge_start_or_end_state();
 
+        var n = Activity.judge_start_or_end_state();
         $scope.is_there_any_activity_signing_up = Activity.button_disabled(n,$scope.activity,Price.get_price_signing_up());
 
         $scope.start_sign_up = function() {

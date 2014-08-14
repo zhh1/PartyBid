@@ -14,14 +14,8 @@ Message.get_messages = function() {
 
 
 Message.get_current_activity_messages = function(activity) {
-    var current_message = [];
     var all_messages = Message.get_messages();
-    for(var i = 0;i<all_messages.length;i++) {
-       if (all_messages[i].activity_name == activity.activity_name) {
-          current_message.push(all_messages[i]);   //将当前活动的信息提取出来
-       }
-    }
-    return current_message;
+    return _.where(all_messages,{activity_name:activity.activity_name});
 };
 
 Message.delete_blank_spaces = function(json_message) {
@@ -39,32 +33,14 @@ Message.get_person_phone = function(json_message) {
 
 Message.find_person_name = function(person_phone) {
     var current_activity_messages = Message.get_current_activity_messages(Activity.get_signing_up_activity());
-    for(var i = 0;i<current_activity_messages.length;i++) {
-        if(current_activity_messages[i].phone == person_phone){
-            return current_activity_messages[i].person_name;
-        }
-    }
+    return _.where(current_activity_messages,{phone:person_phone})[0].person_name;
 };
 
 Message.judge_phone_number = function(phone,activity){
-    if(Message.get_messages().length != 0) {
-        var messages = Message.get_messages();
-        for(var i = 0;i<messages.length;i++){
-            var n = messages[i].phone == phone && messages[i].activity_name == activity.activity_name;
-            var is_phone_number_repeat = {
-                true:function(){
-                    return 0;   //当前报名的活动里，号码重复，返回0
-                },
-                false:function(){
-                    return 1;   //号码未重复，返回1
-                }
-            }
-            return is_phone_number_repeat[n]();
-        }
-    }
-    else {
-        return 1;
-    }
+    var messages = Message.get_messages();
+    return !_.some(messages,function(item) {
+        return item.phone == phone && item.activity_name == activity.activity_name;
+    });
 };
 
 Message.prototype.save = function() {
