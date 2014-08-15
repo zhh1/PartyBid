@@ -32,15 +32,17 @@ Activity.get_signing_up_activity = function() {
 
 Activity.judge_start_or_end_state = function() {
     var activities = Activity.get_activities();
-    return (_.where(activities,{state:"end"}) || []).length;
+    return _.some(activities,function(item) {
+        return item.state == "end";
+    });
 };
 
 Activity.button_disabled = function(n,activity,signing_up) {
     if(!signing_up) {
-        return n==1 && activity.state=="start";
+        return n && activity.state=="start";
     }
     else {
-        return (n==1 && activity.state=="start") || signing_up.price_state == "start";
+        return (n && activity.state=="start") || signing_up.price_state == "start";
     }
 };
 

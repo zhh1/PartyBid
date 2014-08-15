@@ -29,22 +29,13 @@ Price.get_price_signing_up = function() {
 };
 
 Price.get_price_of_current_activity = function() {
-    var current_activity_price = [];
-    for(var i=0;i<Price.get_prices().length;i++) {
-        if(Price.get_prices()[i].activity_name == Activity.get_current_activity().activity_name) {
-            current_activity_price.push(Price.get_prices()[i]);
-        }
-    }
-    return current_activity_price;
+    return _.where(Price.get_prices(),{activity_name:Activity.get_current_activity().activity_name});
 };
 
 Price.judge_is_price_signing_up = function() {
-    if(!Price.get_price_signing_up()) {
-        return false;
-    }
-    else {
-        return Price.get_price_signing_up().price_state == "start";
-    }
+    return _.some(Price.get_price_signing_up(),function(item) {
+        return item == "start";
+    });
 };
 
 Price.prototype.save = function() {
@@ -55,12 +46,12 @@ Price.prototype.save = function() {
 
 Price.prototype.fresh_price_state = function() {
     var prices = Price.get_prices();
-    for(var i=0;i<prices.length;i++){
-        if(prices[i].activity_name == this.activity_name && prices[i].price_name == this.price_name){
-            prices[i].price_state = this.price_state;
-            Price.set_prices(prices);
+    _.each(prices,function(item) {
+        if(item.activity_name == this.activity_name && item.price_name == this.price_name) {
+            item.price_state = this.price_state;
         }
-    }
+    },this);
+    Price.set_prices(prices);
     Price.set_current_price(this);
     Price.set_price_signing_up(this);
 };

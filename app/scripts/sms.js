@@ -63,7 +63,6 @@ var native_accessor = {
 
         if(message.search(/bm/i) == 0){
             var i = Message.judge_phone_number(person_phone,signing_up_activity); //判断号码是否重复
-            console.log(i);
             var is_activity_signing_up = {         //判断报名是否开始
                 "start":function() {
                     native_accessor.send_sms(person_phone,"对不起,报名活动未开始或者活动已结束");
