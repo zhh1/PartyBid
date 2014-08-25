@@ -4,5 +4,12 @@ header.header {{price_statistics}}（{{sign_up_quantity}}人）
     .header-right
         a.side-slide-btn.btn.btn-primary(href="#/price_results") 列表
 
+#wrapper.wrapper
+    ul.list-style-2
+        li.list-style(ng-repeat='message in price_messages')
+            h4 ￥{{message.price}}
+            i {{message.number}}人
+
+
 footer
     p 竞价结果：{{price_results}}

@@ -45,3 +45,18 @@ PriceMessages.sort_price = function() {
         return messages.price;
     });
 };
+
+PriceMessages.statistics_price = function() {
+    var current_price_messages = PriceMessages.get_current_price_messages(Price.get_price_signing_up());
+    return _.groupBy(current_price_messages,function(message) {
+        return message.price;
+    });
+};
+
+PriceMessages.change_to_price_array = function() {
+    var price_array = [];
+    _.map(PriceMessages.statistics_price(),function(value,key) {
+        price_array.push({"price":key,"number":value.length});
+    });
+    return price_array;
+};

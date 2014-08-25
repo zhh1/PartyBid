@@ -751,6 +751,11 @@ footer {
 	-webkit-text-fill-color: transparent;
 }
 
+.li-right {
+    position: absolute;
+    right:10px;
+}
+
 
 
 

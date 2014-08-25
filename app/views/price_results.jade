@@ -6,8 +6,11 @@ header.header {{current_price_results}}（{{sign_up_quantity}}人）
 
 ol
     li.list-style(ng-repeat='message in price_messages')
-        h4 {{message.person_name}} ￥{{message.price}}
+        h4 {{message.person_name}}
+            span.li-right ￥{{message.price}}
         span {{message.phone}}
+
+
 
 footer
     p 竞价结果：{{price_results}}
