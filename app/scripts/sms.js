@@ -33,7 +33,7 @@ var native_accessor = {
                     scope.refresh_sign_up_info();
                 });
             }
-        }
+        };
 
         var is_sign_up_succeed = {           //判断竞价的人是否报名过
             true: function() {
@@ -43,7 +43,7 @@ var native_accessor = {
             false: function() {
                 native_accessor.send_sms(person_phone, "对不起，您未报名，无法参与竞价");
             }
-        }
+        };
 
         var is_phone_repeat = {        //判断竞价是否重复
             true: function() {
@@ -59,7 +59,7 @@ var native_accessor = {
             false:function() {
                 native_accessor.send_sms(person_phone, "对不起,您已经竞价过了，请不要重复竞价");
             }
-        }
+        };
 
         if(message.search(/bm/i) == 0){
             var i = Message.judge_phone_number(person_phone,signing_up_activity); //判断号码是否重复
@@ -70,7 +70,7 @@ var native_accessor = {
                 "end":function() {
                     is_sign_up_successful[i]();
                 }
-            }
+            };
             is_activity_signing_up[signing_up_activity.state]();
         }
 
@@ -82,7 +82,7 @@ var native_accessor = {
                 false: function() {
                     native_accessor.send_sms(person_phone,"对不起,竞价活动未开始或者活动已结束");
                 }
-            }
+            };
             is_price_signing_up[Price.judge_is_price_signing_up()]();
         }
     }

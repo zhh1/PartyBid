@@ -1,6 +1,3 @@
-/**
- * Created by jjq on 14-7-21.
- */
 angular
     .module('PartyBidApp', [
         'ngCookies',
@@ -37,9 +34,19 @@ angular
                 controller: 'PriceSignUpCtrl'
 
             })
+            .when('/price_results',{
+                templateUrl: 'views/price_results.html',
+                controller: 'PriceResultsCtrl'
+
+            })
+            .when('/price_statistics',{
+                templateUrl: 'views/price_statistics.html',
+                controller: 'PriceStatisticsCtrl'
+
+            })
             .otherwise({
                 redirectTo: '/activity_list'
             });
 
 
-    })
+    });

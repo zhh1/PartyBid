@@ -38,3 +38,10 @@ PriceMessages.prototype.save = function() {
     price_messages.push(this);
     PriceMessages.set_price_messages(price_messages);
 };
+
+PriceMessages.sort_price = function() {
+    var current_price_messages = PriceMessages.get_current_price_messages(Price.get_price_signing_up());
+    return _.sortBy(current_price_messages,function(messages) {
+        return messages.price;
+    });
+};

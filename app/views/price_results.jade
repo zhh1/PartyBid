@@ -1,0 +1,13 @@
+header.header {{current_price_results}}（{{sign_up_quantity}}人）
+    .header-left
+        a.side-slide-btn.btn.btn-primary(href="#/price_list") 返回
+    .header-right
+        a.side-slide-btn.btn.btn-primary(href="#/price_statistics") 统计
+
+ol
+    li.list-style(ng-repeat='message in price_messages')
+        h4 {{message.person_name}} ￥{{message.price}}
+        span {{message.phone}}
+
+footer
+    p 竞价结果：{{price_results}}
