@@ -12,7 +12,7 @@ angular.module('PartyBidApp')
                 price.change_price_state("end");
                 price.fresh_price_state();
                 $scope.is_the_price_sign_up_ended = Price.get_current_price().price_state == "end";
-                $location.path('/price_results');
+                $location.path('/price_results/sign_up');
             }
         };
 

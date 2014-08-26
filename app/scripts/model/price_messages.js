@@ -41,9 +41,10 @@ PriceMessages.prototype.save = function() {
 
 PriceMessages.sort_price = function() {
     var current_price_messages = PriceMessages.get_current_price_messages(Price.get_price_signing_up());
-    return _.sortBy(current_price_messages,function(messages) {
-        return messages.price;
+    return _.sortBy(current_price_messages,function(item) {
+        return parseInt(item.price);
     });
+
 };
 
 PriceMessages.statistics_price = function() {
@@ -59,4 +60,9 @@ PriceMessages.change_to_price_array = function() {
         price_array.push({"price":key,"number":value.length});
     });
     return price_array;
+};
+
+PriceMessages.get_result = function() {
+    var result = _.findWhere(PriceMessages.change_to_price_array(),{number:1});
+    return _.findWhere(PriceMessages.sort_price(),{price:result.price});
 };

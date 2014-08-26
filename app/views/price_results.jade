@@ -10,7 +10,12 @@ ol
             span.li-right ￥{{message.price}}
         span {{message.phone}}
 
-
-
+#mymodal.modal.fade.in(style="display: block;" ng-hide="not_from_sign_up")
+    .modal-header
+        a.close(data-dismiss="modal") &times
+    .modal-body
+        h4 {{message.person_name}} ￥{{message.price}}
+        h4 {{message.phone}}
+        h4 竞价成功！
 footer
-    p 竞价结果：{{price_results}}
+    p(ng-show="after_popup") 竞价结果：{{price_results}}

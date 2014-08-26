@@ -34,7 +34,7 @@ angular
                 controller: 'PriceSignUpCtrl'
 
             })
-            .when('/price_results',{
+            .when('/price_results/:flag',{
                 templateUrl: 'views/price_results.html',
                 controller: 'PriceResultsCtrl'
 
