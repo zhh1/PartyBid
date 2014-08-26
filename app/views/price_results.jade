@@ -14,8 +14,9 @@ ol
     .modal-header
         a.close(data-dismiss="modal") &times
     .modal-body
-        h4 {{message.person_name}} ￥{{message.price}}
-        h4 {{message.phone}}
-        h4 竞价成功！
+        center(ng-hide="{{message.person_name === undefined}}") {{message.person_name}} ￥{{message.price}}
+        center {{message.phone}}
+        center {{price_result}}
+
 footer
     p(ng-show="after_popup") 竞价结果：{{price_results}}

@@ -33,18 +33,13 @@ PriceMessages.is_price_phone_repeat = function(person_phone,price) {
     });
 };
 
-PriceMessages.prototype.save = function() {
-    var price_messages = PriceMessages.get_price_messages();
-    price_messages.push(this);
-    PriceMessages.set_price_messages(price_messages);
-};
-
 PriceMessages.sort_price = function() {
     var current_price_messages = PriceMessages.get_current_price_messages(Price.get_price_signing_up());
-    return _.sortBy(current_price_messages,function(item) {
-        return parseInt(item.price);
-    });
-
+    if(current_price_messages) {
+        return _.sortBy(current_price_messages,function(item) {
+            return parseInt(item.price);
+        });
+    }
 };
 
 PriceMessages.statistics_price = function() {
@@ -64,5 +59,29 @@ PriceMessages.change_to_price_array = function() {
 
 PriceMessages.get_result = function() {
     var result = _.findWhere(PriceMessages.change_to_price_array(),{number:1});
-    return _.findWhere(PriceMessages.sort_price(),{price:result.price});
+    if(result !== undefined) {
+        return _.findWhere(PriceMessages.sort_price(),{price:result.price});
+    }
+};
+
+PriceMessages.result_display = function() {
+    var result = '对不起，竞价失败，找不到最低且不重复的竞价';
+    if(PriceMessages.get_current_price_messages(Price.get_price_signing_up()).length && PriceMessages.get_result()!==undefined) {
+        result = PriceMessages.get_result().person_name + ' ￥' +PriceMessages.get_result().price + ' ' + PriceMessages.get_result().phone;
+    }
+    return result;
+};
+
+PriceMessages.result = function() {
+    var result = '对不起，竞价失败，找不到最低且不重复的竞价';
+    if(PriceMessages.get_current_price_messages(Price.get_price_signing_up()).length && PriceMessages.get_result()!==undefined) {
+        result = '竞价成功！';
+    }
+    return result;
+};
+
+PriceMessages.prototype.save = function() {
+    var price_messages = PriceMessages.get_price_messages();
+    price_messages.push(this);
+    PriceMessages.set_price_messages(price_messages);
 };
