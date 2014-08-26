@@ -14,7 +14,7 @@ angular.module('PartyBidApp')
                 $timeout(function () {
                     $("#mymodal").modal('hide');
                     $scope.after_popup = true;
-                }, 300000);
+                }, 3000);
             }, 0);
         }
         else {
