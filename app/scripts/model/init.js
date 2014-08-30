@@ -1,52 +1,50 @@
-function current_activity_init() {
+function Init() {
+}
+
+Init.current_activity_init = function() {
     if (!localStorage['current_activity']) {
         localStorage['current_activity'] = JSON.stringify([]);
     }
 };
 
-function activities_init() {
+Init.activities_init = function() {
     if (!localStorage['activities']) {
         localStorage['activities'] = JSON.stringify([]);
     }
 };
 
-function signing_up_activity_init() {
+Init.signing_up_activity_init = function () {
     if (!localStorage['signing_up']) {
         localStorage['signing_up'] = JSON.stringify([]);
     }
 };
 
-function messages_init() {
+Init.messages_init = function() {
     if (!localStorage['messages']) {
-
         localStorage['messages'] = JSON.stringify([]);
     }
 };
 
-function prices_init() {
+Init.prices_init = function() {
     if (!localStorage['prices']) {
-
         localStorage['prices'] = JSON.stringify([]);
     }
 };
 
-function current_price_init() {
+Init.current_price_init = function() {
     if (!localStorage['current_price']) {
-
         localStorage['current_price'] = JSON.stringify([]);
     }
 };
 
-function price_signing_up_init() {
+Init.price_signing_up_init = function() {
     if (!localStorage['price_signing_up']) {
-
         localStorage['price_signing_up'] = JSON.stringify([]);
     }
 };
 
-function price_messages_init() {
+Init.price_messages_init = function() {
     if (!localStorage['price_messages']) {
-
         localStorage['price_messages'] = JSON.stringify([]);
     }
 };

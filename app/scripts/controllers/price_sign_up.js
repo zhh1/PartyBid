@@ -1,7 +1,7 @@
 angular.module('PartyBidApp')
     .controller('PriceSignUpCtrl', function ($scope,$location) {
-        price_signing_up_init();
-        price_messages_init();
+        Init.price_signing_up_init();
+        Init.price_messages_init();
         var current_price = Price.get_current_price();
         var price = new Price(current_price.price_name,current_price.activity_name);
 
@@ -24,6 +24,4 @@ angular.module('PartyBidApp')
         };
 
         $scope.refresh_price_sign_up_info();
-
-
     });

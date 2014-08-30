@@ -1,7 +1,7 @@
 function Activity(name) {
     this.activity_name = name;
     this.state = "start";
-};
+}
 
 Activity.set_activities = function(activities) {
     localStorage['activities'] = JSON.stringify(activities);
@@ -37,13 +37,11 @@ Activity.judge_start_or_end_state = function() {
     });
 };
 
-Activity.button_disabled = function(n,activity,signing_up) {
+Activity.button_disabled = function(is_start,activity,signing_up) {
     if(!signing_up) {
-        return n && activity.state=="start";
+        return is_start && activity.state=="start";
     }
-    else {
-        return (n && activity.state=="start") || signing_up.price_state == "start";
-    }
+    return (is_start && activity.state=="start") || signing_up.price_state == "start";
 };
 
 Activity.judge_yellow = function(activity) {
@@ -67,7 +65,8 @@ Activity.prototype.save = function() {
 Activity.prototype.is_repeat = function() {
     var activities = Activity.get_activities();
     return _.some(activities,function (item) {
-        return item.activity_name == this.activity_name}, this);
+        return item.activity_name == this.activity_name
+    }, this);
 };
 
 Activity.prototype.fresh_activity_state = function() {
@@ -75,9 +74,11 @@ Activity.prototype.fresh_activity_state = function() {
     _.findWhere(activities,{activity_name:this.activity_name}).state = this.state;
     Activity.set_activities(activities);
     Activity.set_current_activity(this);
+    Activity.set_signing_up_activity(Activity.get_current_activity());
 };
 
 Activity.prototype.change_state = function(new_state) {
     this.state = new_state;
+    this.fresh_activity_state();
 };
 

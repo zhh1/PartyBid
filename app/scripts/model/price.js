@@ -2,7 +2,7 @@ function Price(price_name,activity_name) {
     this.activity_name = activity_name;
     this.price_name = price_name;
     this.price_state = "start";
-};
+}
 
 Price.set_prices = function(price) {
     localStorage['prices'] = JSON.stringify(price);
@@ -36,6 +36,14 @@ Price.judge_is_price_signing_up = function() {
     return _.some(Price.get_price_signing_up(),function(item) {
         return item == "start";
     });
+};
+
+Price.create_price = function() {
+    var price_number = Price.get_price_of_current_activity().length + 1;
+    var price_competition = new Price("竞价" + price_number,Activity.get_current_activity().activity_name);
+    price_competition.save();
+    Price.set_current_price(price_competition);
+    Price.set_price_signing_up(price_competition);
 };
 
 Price.prototype.save = function() {
